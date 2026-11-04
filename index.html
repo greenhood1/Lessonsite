@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Learn HTML &amp; CSS | Ebene-Vento Technology</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14213D;--panel:#0E1628;--surface:#1A2A4D;--ink:#F4F7FB;--muted:#9AA9C4;--blue:#2F5BEA;--link:#7FA0FF;--yel:#FFD23F;--line:#2A3957;--ok:#4ADE9A;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--bg) radial-gradient(circle at 100% 0,#1E3470 0,transparent 480px) no-repeat;color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","IBM Plex Sans",system-ui,sans-serif;line-height:1.1;margin:0 0 .5em}
+h1{font-size:clamp(2.1rem,7vw,3.6rem);font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--yel)}
+h2{font-size:1.8rem;font-weight:800}
+h3{font-size:1.1rem;font-weight:600}
+a{color:var(--link)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+nav{display:flex;gap:18px;align-items:center;padding:16px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto;font:800 1.1rem "Bricolage Grotesque",sans-serif}
+.logo{background:var(--blue);color:#fff;border-radius:8px;width:34px;height:34px;display:grid;place-items:center;font-size:.8rem}
+nav a{text-decoration:none;color:var(--ink);font-weight:500}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.btn{display:inline-block;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:.7em 1.2em;font-weight:500;text-decoration:none}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
+.promo{background:var(--yel);color:#14213D;text-align:center;padding:10px 16px;font-weight:500}
+.promo a{color:#14213D}
+.hero{padding:28px 0 36px}
+.hero p{max-width:34em;color:var(--muted);margin:0 0 20px}
+.lab{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
+.lab>div{min-width:0;display:flex;flex-direction:column}
+.lab header{padding:8px 14px;font-weight:500;font-size:.9rem;color:var(--muted);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px}
+textarea,input{width:100%;border:1.5px solid var(--line);border-radius:8px;padding:10px;background:var(--panel);color:var(--ink)}
+#code{flex:1;min-height:260px;border:0;border-radius:0;resize:vertical;padding:14px;font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;tab-size:2}
+iframe{flex:1;width:100%;min-height:260px;border:0;background:#fff}
+.lab>div+div{border-left:1.5px solid var(--line)}
+section{padding:36px 0;border-top:1px solid var(--line)}
+details{background:var(--surface);border:1.5px solid var(--line);border-radius:10px;margin:0 0 10px;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:500}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+details p{margin:0 0 12px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto;font:13.5px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:0 0 14px;white-space:pre}
+details .btn{margin-bottom:16px}
+.muted{color:var(--muted)}
+.barw{height:8px;background:var(--panel);border-radius:8px;overflow:hidden;margin-bottom:16px}
+#bar{height:100%;width:0;background:var(--yel);transition:width .3s}
+.lock{background:var(--panel);border:1.5px dashed var(--line);border-radius:10px;padding:14px 16px;margin:0 0 10px;color:var(--muted)}
+.lock a{margin-left:8px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.plan{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:18px}
+.plan .price{font:800 1.7rem "Bricolage Grotesque",sans-serif;color:var(--yel)}
+.plan p{margin:.3em 0 0;color:var(--muted);font-size:.95rem}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:18px;max-width:560px}
+.free{background:var(--yel);color:#14213D;border-radius:16px;padding:20px;margin-bottom:16px}
+.free b{font:800 1.5rem "Bricolage Grotesque",sans-serif}
+label{display:block;font-weight:500;margin:0 0 12px}
+label input,label textarea{margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+.tbl{overflow-x:auto}
+#admin{display:none}
+.ticker{overflow:hidden;border-top:1px solid var(--line);background:var(--panel);padding:14px 0;margin-top:20px}
+.ticker span{display:inline-block;white-space:nowrap;color:var(--ink);font-weight:500;animation:ltr 16s linear infinite}
+@keyframes ltr{from{transform:translateX(-100%)}to{transform:translateX(100vw)}}
+.fl{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;padding:10px 20px 36px;font-size:.85rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.ticker span{animation:none;display:block;text-align:center;white-space:normal}}
+@media (max-width:700px){.lab{grid-template-columns:1fr}.lab>div+div{border-left:0;border-top:1.5px solid var(--line)}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-120EGX7CNF"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments)}
+gtag("js",new Date());
+gtag("config","G-120EGX7CNF");
+function track(n,p){try{gtag("event",n,p||{})}catch(e){}}
+</script>
+</head>
+<body>
+<div class="promo" id="promoBar"></div>
+<div class="wrap">
+<nav><span class="brand"><span class="logo">EV</span>Ebene-Vento Technology</span><a href="#lessons">Lessons</a><a href="#tutoring">Tutoring</a><a href="#free">Free spots</a><a href="#contact">Contact</a></nav>
+
+<div class="hero">
+<h1>Learn to build <em>websites.</em></h1>
+<p>Edit the code on the left and watch the page update on the right. Break it, fix it, and learn what each line does. No sign-up needed.</p>
+<div class="lab">
+<div><header><span>Your code</span><button class="btn alt" id="reset" style="padding:.1em .7em">Reset</button></header>
+<textarea id="code" spellcheck="false" aria-label="HTML and CSS editor"></textarea></div>
+<div><header><span>Result</span></header><iframe id="out" title="Live result" sandbox></iframe></div>
+</div>
+</div>
+
+<section id="lessons">
+<h2>Your 6 lessons</h2>
+<p class="muted">Work through the lessons in order. Press “Try it” to load the example into the editor above, then mark the lesson complete to unlock the next one.</p>
+<p class="muted" id="prog" style="margin-bottom:6px"></p>
+<div class="barw"><div id="bar"></div></div>
+<div id="lessonList"></div>
+</section>
+
+<section id="tutoring">
+<h2>1-on-1 tutoring</h2>
+<div class="plans" id="plans"></div>
+<p class="muted">We are a full stack team, so we can also help with JavaScript, PHP, Python and databases.</p>
+</section>
+
+<section id="free">
+<div class="free"><b>First 5 students learn free</b><p id="spots" style="margin:.4em 0 0"></p></div>
+<form class="card" id="claim">
+<label>Full name<input name="n" required autocomplete="name"></label>
+<label>Phone / WhatsApp number<input name="p" type="tel" required autocomplete="tel"></label>
+<label>What do you want to learn?<input name="g" placeholder="e.g. build my own website"></label>
+<button class="btn" type="submit">Claim my free spot</button>
+<p class="muted" style="margin:10px 0 0;font-size:.9rem">This opens WhatsApp with your details filled in. Send the message to confirm.</p>
+</form>
+</section>
+
+<section id="contact">
+<h2>Contact us</h2>
+<p>Tell us what you want to learn and we’ll suggest a plan.</p>
+<a class="btn" id="mail" href="#">Email us</a>
+<a class="btn alt" id="wa" href="#">Message on WhatsApp</a>
+</section>
+
+<section id="admin">
+<h2>Admin</h2>
+<div class="card" id="login">
+<label>Admin PIN<input id="pin" type="password" autocomplete="off"></label>
+<button class="btn" id="enter">Log in</button>
+<p id="bad" class="muted" style="margin:10px 0 0"></p>
+</div>
+<div id="panel" style="display:none">
+<h3>Students</h3>
+<p class="muted">Saved only in this browser. Add each person who messages you on WhatsApp.</p>
+<form class="card" id="add" style="margin-bottom:16px">
+<label>Name<input name="n" required></label>
+<label>Phone<input name="p" required></label>
+<button class="btn" type="submit">Add student</button>
+</form>
+<p><b id="count">0</b> of <span id="cap"></span> free spots used. Set <code>claimed</code> in CONFIG to <b id="sugg">0</b>.</p>
+<div class="tbl"><table><thead><tr><th>Name</th><th>Phone</th><th>Date</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<p><button class="btn alt" id="csv">Download list (CSV)</button></p>
+
+<h3 style="margin-top:28px">Lesson builder</h3>
+<p class="muted">Fill this in, press Generate, then paste the result into <code>lessons</code> in the CONFIG block of this file.</p>
+<form class="card" id="lb">
+<label>Lesson title<input name="t" required placeholder="Lesson 5: CSS Grid"></label>
+<label>Explanation<textarea name="b" rows="4" required></textarea></label>
+<label>Practice task<textarea name="pr" rows="2"></textarea></label>
+<label>Example code (loads in the editor)<textarea name="ex" rows="7" required spellcheck="false"></textarea></label>
+<button class="btn" type="submit">Generate</button>
+</form>
+<pre id="snip" style="display:none;margin-top:14px"></pre>
+<button class="btn alt" id="cp" style="display:none">Copy</button>
+<p><button class="btn alt" id="out2">Log out</button></p>
+</div>
+</section>
+</div>
+
+<div class="ticker" aria-label="Copyright"><span>© <span id="yr" style="animation:none;display:inline"></span> Ebene-Vento Technology. All rights reserved.</span></div>
+<div class="fl"><span>We use Google Analytics to understand how visitors use this site.</span><a href="#admin">Admin</a></div>
+
+<script>
+/* ===== EDIT THIS BLOCK ===== */
+var CONFIG={
+  email:"greenhopecover@gmail.com",
+  whatsapp:"2347066949022",
+  adminPin:"1234",          /* change this PIN */
+  promoSpots:5,             /* free spots offered */
+  claimed:0,                /* how many are already taken */
+  freeLessons:6,            /* lessons open to everyone; set 4 to lock 5 and 6 for paying students */
+  plans:[
+    {name:"Single session",price:5000,text:"One hour, live, on any HTML or CSS question."},
+    {name:"Beginner pack",price:18000,text:"4 sessions from zero to your first finished page."},
+    {name:"Build my site",price:30000,text:"6 sessions to design and publish your own site."}
+  ],
+  /* Paste new lessons here, one after another, separated by commas */
+  lessons:[
+    {t:"Lesson 1: Your first web page",b:"HTML uses tags to describe content. A tag like <h1> opens a heading and </h1> closes it. Paragraphs use <p>. Every page is built from tags like these.",pr:"Change the heading to your name, then add a second paragraph about your hobbies.",ex:"<h1>Hello, I am Sam</h1>\n<p>This is my first page.</p>\n<p>Add another paragraph below.</p>"},
+    {t:"Lesson 2: Links, lists and forms",b:"Links use <a href=\"...\">. Lists use <ul> with one <li> for each item. Forms collect information with <input> fields and a <button>.",pr:"Add two more list items and a new input asking for a phone number.",ex:"<h2>My favourites</h2>\n<ul>\n  <li>Tea</li>\n  <li>Coffee</li>\n</ul>\n<a href=\"https://example.com\">Visit a site</a>\n\n<h3>Contact me</h3>\n<form>\n  <input placeholder=\"Your name\"><br><br>\n  <input placeholder=\"Your email\"><br><br>\n  <button>Send</button>\n</form>"},
+    {t:"Lesson 3: Styling with CSS",b:"CSS changes how things look. A rule picks an element, then sets properties inside curly braces, such as color, font-size, background and padding. Every element is a box with content, padding, border and margin. This is called the box model.",pr:"Change the background color, then give the paragraph a border and more padding.",ex:"<h1>Styled heading</h1>\n<p>CSS makes pages look good.</p>\n\n<style>\nbody { background: #fff7d6; font-family: Georgia, serif; padding: 16px; }\nh1 { color: tomato; }\np { font-size: 20px; padding: 12px; border: 2px solid tomato; border-radius: 8px; }\n</style>"},
+    {t:"Lesson 4: Layout with Flexbox and Grid",b:"Put display: flex on a container and its children line up in a row. gap adds space between them. display: grid builds rows and columns, and grid-template-columns sets how many columns you get.",pr:"Add a fourth box to each layout, then change the grid to 2 columns.",ex:"<div class=\"row\">\n  <div class=\"box\">One</div>\n  <div class=\"box\">Two</div>\n  <div class=\"box\">Three</div>\n</div>\n\n<div class=\"grid\">\n  <div class=\"box\">A</div>\n  <div class=\"box\">B</div>\n  <div class=\"box\">C</div>\n  <div class=\"box\">D</div>\n  <div class=\"box\">E</div>\n  <div class=\"box\">F</div>\n</div>\n\n<style>\nbody { font-family: sans-serif; padding: 12px; }\n.row { display: flex; gap: 12px; margin-bottom: 16px; }\n.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }\n.box { background: #2F5BEA; color: #fff; padding: 20px; border-radius: 8px; text-align: center; }\n</style>"},
+    {t:"Lesson 5: Responsive design for phones",b:"Most visitors use phones, so pages must fit small screens. Use relative sizes like percentages, and use a media query to change the layout below a certain width. Drag the Result panel narrower, or open the site on your phone, to see the change.",pr:"Change 600px to 900px and see when the boxes stack. Then add a third card.",ex:"<div class=\"cards\">\n  <div class=\"card\">Card one</div>\n  <div class=\"card\">Card two</div>\n</div>\n\n<style>\nbody { font-family: sans-serif; padding: 12px; }\n.cards { display: flex; gap: 12px; }\n.card { flex: 1; background: #FFD23F; padding: 24px; border-radius: 8px; }\n@media (max-width: 600px) {\n  .cards { flex-direction: column; }\n}\n</style>"},
+    {t:"Lesson 6: Final project, build your own website",b:"Now you put everything together. Below is a starter personal website with a header, an about section, a list of services and a footer. Replace the text with your own details, change the colors, and make it yours. When it looks good, ask us how to publish it online.",pr:"Replace the name and services with your own, choose new colors, and add one extra section.",ex:"<header>\n  <h1>Amaka Designs</h1>\n  <p>Affordable logos and flyers in Lagos</p>\n</header>\n\n<section>\n  <h2>About me</h2>\n  <p>I help small businesses look professional.</p>\n</section>\n\n<section>\n  <h2>Services</h2>\n  <ul>\n    <li>Logo design</li>\n    <li>Flyers and posters</li>\n    <li>Social media graphics</li>\n  </ul>\n</section>\n\n<footer>Contact: 0700 000 0000</footer>\n\n<style>\nbody { margin: 0; font-family: sans-serif; color: #14213D; }\nheader { background: #14213D; color: #fff; padding: 28px 20px; }\nheader p { color: #FFD23F; margin: 0; }\nsection { padding: 16px 20px; }\nh2 { color: #2F5BEA; }\nfooter { background: #2F5BEA; color: #fff; padding: 14px 20px; }\n</style>"}
+  ]
+};
+/* =========================== */
+var $=function(i){return document.getElementById(i)};
+var naira=function(n){return "₦"+n.toLocaleString("en-NG")};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var left=Math.max(0,CONFIG.promoSpots-CONFIG.claimed);
+
+$("yr").textContent=new Date().getFullYear();
+$("mail").href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("HTML and CSS lessons");
+$("wa").href="https://wa.me/"+CONFIG.whatsapp;
+$("mail").addEventListener("click",function(){track("click_email")});
+$("wa").addEventListener("click",function(){track("click_whatsapp")});
+$("plans").innerHTML=CONFIG.plans.map(function(p){return '<div class="plan"><h3>'+esc(p.name)+'</h3><div class="price">'+naira(p.price)+'</div><p>'+esc(p.text)+'</p></div>'}).join("");
+$("spots").innerHTML=left>0?'<b>'+left+' of '+CONFIG.promoSpots+' spots left.</b> Get one free 1-hour live session worth '+naira(CONFIG.plans[0].price)+'.':'All free spots are taken. Join the waiting list on WhatsApp.';
+$("promoBar").innerHTML=left>0?'Free lesson for the first '+CONFIG.promoSpots+' students: only '+left+' left. <a href="#free">Claim yours</a>':'Free spots are full. See our <a href="#tutoring">tutoring plans</a>.';
+
+var DK="ev_done",memD=[];
+function getD(){try{return JSON.parse(localStorage.getItem(DK)||"[]")}catch(e){return memD}}
+function setD(d){memD=d;try{localStorage.setItem(DK,JSON.stringify(d))}catch(e){}}
+function renderLessons(openIdx){
+  var done=getD(),n=CONFIG.lessons.length;
+  $("prog").textContent=done.length+" of "+n+" lessons complete";
+  $("bar").style.width=(100*done.length/n)+"%";
+  $("lessonList").innerHTML=CONFIG.lessons.map(function(l,i){
+    if(i>=CONFIG.freeLessons)return '<div class="lock">Locked: '+esc(l.t)+' <a href="https://wa.me/'+CONFIG.whatsapp+'">Unlock on WhatsApp</a></div>';
+    if(i>0&&done.indexOf(i-1)<0)return '<div class="lock">Locked: '+esc(l.t)+'. Finish lesson '+i+' first.</div>';
+    var d=done.indexOf(i)>-1;
+    return '<details'+(i===openIdx?' open':'')+'><summary>'+(d?'✓ ':'')+esc(l.t)+'</summary><p>'+esc(l.b)+'</p><pre>'+esc(l.ex)+'</pre>'+(l.pr?'<p><b>Practice:</b> '+esc(l.pr)+'</p>':'')+'<button class="btn" data-i="'+i+'">Try it</button> <button class="btn alt" data-c="'+i+'">'+(d?'Completed':'Mark as complete')+'</button></details>';
+  }).join("");
+}
+var first=getD().length;renderLessons(first<CONFIG.lessons.length?first:-1);
+
+$("claim").addEventListener("submit",function(e){
+  e.preventDefault();var f=e.target;
+  track("claim_free_spot");
+  var m="Hello Ebene-Vento Technology, I want to claim a free spot.\nName: "+f.n.value+"\nPhone: "+f.p.value+"\nGoal: "+(f.g.value||"HTML and CSS basics");
+  window.open("https://wa.me/"+CONFIG.whatsapp+"?text="+encodeURIComponent(m),"_blank");
+});
+
+var START='<h1>Hello, world!</h1>\n<p>Edit me and watch the result change.</p>\n\n<style>\nbody { font-family: sans-serif; padding: 16px; }\nh1 { color: #2F5BEA; }\n</style>';
+var ta=$("code"),fr=$("out");
+function run(){fr.srcdoc=ta.value}
+function put(c){ta.value=c;run()}
+ta.addEventListener("input",run);
+$("reset").addEventListener("click",function(){put(START)});
+$("lessonList").addEventListener("click",function(e){
+  var t=e.target;
+  if(t.dataset.i!==undefined){track("lesson_try",{lesson:+t.dataset.i+1});put(CONFIG.lessons[+t.dataset.i].ex);document.querySelector(".lab").scrollIntoView({behavior:"smooth",block:"center"});}
+  else if(t.dataset.c!==undefined){
+    var i=+t.dataset.c,d=getD();track("lesson_complete",{lesson:i+1});
+    if(d.indexOf(i)<0)d.push(i);
+    setD(d);renderLessons(i+1<CONFIG.lessons.length?i+1:-1);
+  }
+});
+put(START);
+
+/* Admin */
+var KEY="ev_regs",authed=false;
+function getR(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}
+function setR(r){try{localStorage.setItem(KEY,JSON.stringify(r))}catch(e){}}
+function draw(){
+  var r=getR();
+  $("count").textContent=r.length;$("cap").textContent=CONFIG.promoSpots;$("sugg").textContent=Math.min(r.length,CONFIG.promoSpots);
+  $("rows").innerHTML=r.map(function(x,i){return "<tr><td>"+esc(x.n)+"</td><td>"+esc(x.p)+"</td><td>"+esc(x.d)+'</td><td><button class="btn alt" data-del="'+i+'" style="padding:.2em .7em">Remove</button></td></tr>'}).join("")||'<tr><td colspan="4" class="muted">No students yet.</td></tr>';
+}
+function route(){
+  var on=location.hash==="#admin";
+  $("admin").style.display=on?"block":"none";
+  if(on)$("admin").scrollIntoView();
+  $("login").style.display=authed?"none":"block";$("panel").style.display=authed?"block":"none";
+}
+window.addEventListener("hashchange",route);route();
+$("enter").addEventListener("click",function(){
+  if($("pin").value===CONFIG.adminPin){authed=true;$("pin").value="";$("bad").textContent="";route();draw()}
+  else $("bad").textContent="Wrong PIN. Try again.";
+});
+$("out2").addEventListener("click",function(){authed=false;route()});
+$("add").addEventListener("submit",function(e){
+  e.preventDefault();var f=e.target,r=getR();
+  r.push({n:f.n.value,p:f.p.value,d:new Date().toLocaleDateString("en-GB")});
+  setR(r);f.reset();draw();
+});
+$("rows").addEventListener("click",function(e){
+  var i=e.target.dataset.del;if(i===undefined)return;
+  var r=getR();r.splice(+i,1);setR(r);draw();
+});
+$("csv").addEventListener("click",function(){
+  var t="Name,Phone,Date\n"+getR().map(function(x){return [x.n,x.p,x.d].map(function(v){return '"'+String(v).replace(/"/g,'""')+'"'}).join(",")}).join("\n");
+  var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/csv"}));a.download="students.csv";a.click();
+});
+$("lb").addEventListener("submit",function(e){
+  e.preventDefault();var f=e.target;
+  var s="{t:"+JSON.stringify(f.t.value)+",b:"+JSON.stringify(f.b.value)+",pr:"+JSON.stringify(f.pr.value)+",ex:"+JSON.stringify(f.ex.value)+"},";
+  var p=$("snip");p.textContent=s;p.style.display="block";$("cp").style.display="inline-block";
+});
+$("cp").addEventListener("click",function(){
+  var t=$("snip").textContent;
+  if(navigator.clipboard)navigator.clipboard.writeText(t).then(function(){$("cp").textContent="Copied"});
+});
+</script>
+</body>
+</html>
